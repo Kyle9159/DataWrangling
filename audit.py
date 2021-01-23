@@ -66,7 +66,7 @@ def street_name(elem):
 
 
 def audit(osmfile):
-    osm_file = open(osmfile, "r")
+    osm_file = open('bothell.osm', 'r')
     street_types = defaultdict(set)
     for event, elem in ET.iterparse(osm_file, events=("start",)):
 
