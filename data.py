@@ -27,6 +27,7 @@ WAY_FIELDS = ['id', 'user', 'uid', 'version', 'changeset', 'timestamp']
 WAY_TAGS_FIELDS = ['id', 'key', 'value', 'type']
 WAY_NODES_FIELDS = ['id', 'node_id', 'position']
 
+import audit
 
 def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIELDS,
                   problem_chars=PROBLEMCHARS, default_tag_type='regular'):
@@ -36,7 +37,9 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
     way_attribs = {}
     way_nodes = []
     tags = []  
-
+#Street name correction function call
+    audit.fix_street(element)
+    
     if element.tag == 'node':
         for attrib in element.attrib:
             if attrib in NODE_FIELDS:
